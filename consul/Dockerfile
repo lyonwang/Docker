@@ -1,0 +1,13 @@
+FROM microsoft/windowsservercore:1709
+
+ENV IPADDRESS 127.0.0.1
+
+WORKDIR consul
+
+EXPOSE 8300
+EXPOSE 8500
+EXPOSE 8600
+
+COPY . .
+
+ENTRYPOINT consul.exe agent -server -data-dir=data -bootstrap -ui -client=%IPADDRESS%
